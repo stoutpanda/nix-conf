@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "mcp__nixos__nixos_info"
+      "mcp__nixos__nixos_info",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "deny": []
   }

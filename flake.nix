@@ -11,12 +11,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
+    # Hardware-specific configurations
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    
     # Systems definitions
     systems.url = "github:nix-systems/default";
     
   };
   
-  outputs = { self, nixpkgs, home-manager, flake-utils, systems, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, flake-utils, systems, ... }@inputs: 
     let
       # Helper function to create system configurations
       mkSystem = system: hostname:
