@@ -11,28 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    # Flake utilities for better system support
-    flake-utils.url = "github:numtide/flake-utils";
-    
     # Systems definitions
     systems.url = "github:nix-systems/default";
     
-    # Optional: Helix editor (uncomment if needed)
-    # helix = {
-    #   url = "github:helix-editor/helix/master";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
   
-  # Binary cache configuration
-  nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
   outputs = { self, nixpkgs, home-manager, flake-utils, systems, ... }@inputs: 
     let
       # Helper function to create system configurations
