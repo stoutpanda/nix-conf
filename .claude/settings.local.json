@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__nixos__nixos_info"
+    ],
+    "deny": []
+  }
+}
