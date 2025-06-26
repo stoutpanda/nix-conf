@@ -3,10 +3,11 @@
 {
   programs.starship = {
     enable = true;
-    
+    enableInteractive = true;
     # Enable for all supported shells
     enableBashIntegration = true;
     enableFishIntegration = true;
+    enableNushellIntegration = true;
     
     # Basic configuration
     settings = {
