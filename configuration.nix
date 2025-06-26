@@ -40,7 +40,6 @@
   };
 
   # Enable programs
-  programs.firefox.enable = true;
   programs.fish.enable = true;
 
   # Allow unfree packages
@@ -52,7 +51,6 @@
     htop
     curl
     git
-    fish
     docker
     vim
     wally
