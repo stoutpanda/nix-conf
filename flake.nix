@@ -5,7 +5,7 @@
     # NixOS official package source
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Nixos Hyprland
-    inputs.hyprland.url = "github:hyprwm/Hyprland";  
+    hyprland.url = "github:hyprwm/Hyprland";  
     # Home Manager for user configuration management
     home-manager = {
       url = "github:nix-community/home-manager";
