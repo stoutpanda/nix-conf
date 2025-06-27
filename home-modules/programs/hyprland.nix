@@ -147,7 +147,7 @@ in
       };
       
       # Additional config that references external sources
-      extraConfig = 
+      extraConfig = ''
         # Source Omarchy default configurations if they exist
         source = ~/.local/share/omarchy/default/hypr/autostart.conf
         source = ~/.local/share/omarchy/default/hypr/bindings.conf
@@ -156,9 +156,7 @@ in
         source = ~/.local/share/omarchy/default/hypr/input.conf
         source = ~/.local/share/omarchy/default/hypr/windows.conf
         source = ~/.config/omarchy/current/theme/hyprland.conf
-        
-        # Optional autostart applications (uncomment as needed)
-      ;
+      '';
     };
     
     # Hypridle configuration
