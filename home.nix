@@ -4,6 +4,7 @@
   imports = [
     ./home-modules/shell
     ./home-modules/programs/git.nix
+    ./home-modules/programs/hyprland.nix
   ];
 
   home.username = "jason";
@@ -14,10 +15,10 @@
     # Terminal file managers
     nnn
     mc
-
+    nautilus
     # Terminals
     ghostty
-
+    alacritty
     # Editors
     vscode
     neovim
@@ -81,6 +82,14 @@
 
     # Claude
     claude-code
+    #other
+    spotify
+    signal-desktop
+    fastfetch
+    lazygit
+    waybar
+    brightnessctl
+    google-chome
   ];
 
   # This value determines the home Manager release that your
