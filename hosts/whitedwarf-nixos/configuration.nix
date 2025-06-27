@@ -21,9 +21,6 @@
   services.asusd = {
     enable = true;
     enableUserService = true;
-    asusdConfig = {
-      bat_charge_limit = 80;  # Set battery charge limit to 80%
-    };
   };
 
   # This value determines the NixOS release from which the default

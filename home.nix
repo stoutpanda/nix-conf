@@ -89,7 +89,7 @@
     lazygit
     waybar
     brightnessctl
-    google-chome
+    google-chrome
   ];
 
   # This value determines the home Manager release that your
