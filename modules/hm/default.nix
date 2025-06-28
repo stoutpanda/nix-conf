@@ -96,7 +96,6 @@
         enable = true;
         wallbash = true;
       };
-      vim = true;
       default = "code";
     };
     
