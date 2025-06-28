@@ -62,8 +62,8 @@ in
     enable = true; # Enable the Hydenix module
 
     # Hostname is now set per-host in hosts/${hostname}/configuration.nix
-    timezone = "America/Vancouver"; # Change to your timezone
-    locale = "en_CA.UTF-8"; # Change to your preferred locale
+    timezone = "America/Chicago"; # Change to your timezone
+    locale = "en_US.UTF-8"; # Change to your preferred locale
 
     # Enable all Hydenix modules with custom settings
     audio.enable = true; # enable audio module
@@ -83,7 +83,6 @@ in
     system.enable = true; # enable system module
   };
 
-  #! EDIT THESE VALUES (must match users defined above)
   users.users.jason = {
     isNormalUser = true; # Regular user account
     initialPassword = "jason"; # Default password (CHANGE THIS after first login with passwd)
