@@ -6,7 +6,11 @@
       "mcp__nixos__nixos_search",
       "mcp__nixos__home_manager_info",
       "Bash(sudo nixos-rebuild switch:*)",
-      "Bash(nixos-rebuild build:*)"
+      "Bash(nixos-rebuild build:*)",
+      "mcp__nixos__nixos_flakes_search",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(tree:*)"
     ],
     "deny": []
   }
