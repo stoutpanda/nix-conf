@@ -7,7 +7,7 @@
   ];
 
   # Hostname configuration
-  networking.hostName = hostname;
+  networking.hostName = whitedwarf-nixos;
 
   # Bootloader configuration
   boot.loader.systemd-boot.enable = true;
@@ -41,6 +41,4 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
-  # System state version
-  system.stateVersion = "25.11";
 }
