@@ -14,9 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # LUKS encryption setup
-  boot.initrd.luks.devices."luks-3e8010e8-8e35-45f0-8063-6f49fda6c09d".device = "/dev/disk/by-uuid/3e8010e8-8e35-45f0-8063-6f49fda6c09d";
-
   # ASUS laptop control daemon for hardware management
   services.asusd = {
     enable = true;
@@ -24,7 +21,7 @@
   };
 
   # Enable AMD microcode updates
-  #hardware.cpu.amd.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = true;
 
   # NVIDIA GPU configuration (already handled by nixos-hardware module)
   # Additional GPU settings can be added here if needed

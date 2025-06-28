@@ -18,7 +18,6 @@
     jq
     yq-go
     eza
-    fzf
     ripgrep
     
     # System monitoring
@@ -54,7 +53,7 @@
     brightnessctl
     claude-code
     nix-output-monitor
-    
+    fzf    
     # Archive tools
     zip
     xz
@@ -142,11 +141,14 @@
       };
       bash.enable = true; # Keep bash as fallback
       fish.enable = true; # Enable fish as primary shell
-      pokego.enable = false;
+      pokego.enable = true;
       p10k.enable = false;
       starship.enable = true; # Starship prompt
     };
     
+    # Fix for missing hyde_config.fish file
+    home.file.".config/fish/hyde_config.fish".source =
+      "${pkgs.hyde-modified}/Configs/.config/fish/hyde_config.fish";
     social = {
       enable = true;
       discord.enable = true;
@@ -154,7 +156,7 @@
       vesktop.enable = false;
     };
     
-    spotify.enable = true;
+    spotify.enable = false;
     swww.enable = true;
     
     terminals = {
