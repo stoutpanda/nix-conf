@@ -12,7 +12,10 @@
       "Bash(rm:*)",
       "Bash(tree:*)",
       "Bash(rg:*)",
-      "Bash(nix flake show:*)"
+      "Bash(nix flake show:*)",
+      "Bash(nix --extra-experimental-features 'nix-command flakes' build --print-out-paths 'git+file:///home/jason/projects/nix-config#nixosConfigurations.\"whitedwarf-nixos\".config.system.build.toplevel' --no-link)",
+      "Bash(grep:*)",
+      "Bash(nix:*)"
     ],
     "deny": []
   }

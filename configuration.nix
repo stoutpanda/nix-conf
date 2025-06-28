@@ -13,6 +13,7 @@ let
       inputs.hydenix.lib.overlays
       (final: prev: {
         userPkgs = import inputs.nixpkgs {
+          inherit (inputs.hydenix.lib) system;
           config.allowUnfree = true;
         };
       })
@@ -97,5 +98,5 @@ in
     shell = pkgs.userPkgs.fish; # Using fish as default shell
   };
 
- # system.stateVersion = inputs.hydenix.lib.mkForce "25.11";
+  #system.stateVersion = "25.11";
 }

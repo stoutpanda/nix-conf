@@ -3,7 +3,7 @@
 {
   imports = [
     # ./example.nix - add your modules here
-    ./fish.nix
+    # ./fish.nix - Disabled: Using hydenix's fish configuration instead
   ];
 
   # home-manager options go here
