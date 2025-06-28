@@ -10,8 +10,6 @@
       set -g fish_greeting
     '';
     
-    };
-    
     # Fish functions
     functions = {
       # Custom functions can be added here
