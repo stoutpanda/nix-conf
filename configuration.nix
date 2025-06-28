@@ -1,5 +1,6 @@
 {
   inputs,
+  system,
   ...
 }:
 let
@@ -7,13 +8,13 @@ let
   # ---------------------
 
   pkgs = import inputs.hydenix.inputs.hydenix-nixpkgs {
-    inherit (inputs.hydenix.lib) system;
+    inherit system;  # Use system from specialArgs
     config.allowUnfree = true;
     overlays = [
       inputs.hydenix.lib.overlays
       (final: prev: {
         userPkgs = import inputs.nixpkgs {
-          inherit (inputs.hydenix.lib) system;
+          inherit system;  # Use system from specialArgs
           config.allowUnfree = true;
         };
       })

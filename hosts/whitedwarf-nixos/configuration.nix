@@ -24,7 +24,7 @@
   };
 
   # Enable AMD microcode updates
-  hardware.cpu.amd.updateMicrocode = true;
+  #hardware.cpu.amd.updateMicrocode = true;
 
   # NVIDIA GPU configuration (already handled by nixos-hardware module)
   # Additional GPU settings can be added here if needed

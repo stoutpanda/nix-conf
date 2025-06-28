@@ -29,7 +29,7 @@
     ltrace
     lsof
     sysstat
-    lm_sensors
+    # lm_sensors  # Removed - installed at system level via hydenix hardware module
     ethtool
     pciutils
     usbutils
@@ -63,7 +63,7 @@
     
     # Basic utilities
     cowsay
-    file
+    # file  # Removed - already provided by system
     which
     tree
     gnused

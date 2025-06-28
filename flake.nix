@@ -28,12 +28,15 @@
   outputs =
     { ... }@inputs:
     let
+      # System architecture - declare once, use everywhere
+      system = "x86_64-linux";
+      
       # Helper function to create system configurations with host support
       mkSystem = hostname:
         inputs.hydenix.inputs.hydenix-nixpkgs.lib.nixosSystem {
-          inherit (inputs.hydenix.lib) system;
+          inherit system;
           specialArgs = {
-            inherit inputs hostname;
+            inherit inputs hostname system;
           };
           modules = [
             # Base Hydenix configuration
