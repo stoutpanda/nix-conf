@@ -74,7 +74,7 @@ in
       useSystemdBoot = true; # use systemd-boot (configured per-host)
       kernelPackages = pkgs.linuxPackages_zen; # zen kernel for better desktop performance
     };
-    gaming.enable = false; # disable gaming module for now
+    gaming.enable = true; # disable gaming module for now
     hardware.enable = true; # enable hardware module
     network.enable = true; # enable network module (includes NetworkManager)
     nix.enable = true; # enable nix module

@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs.userPkgs; [
     # System packages that should be available to all users
     bitwarden-desktop # Also installing at system level
+    sqlite
   ];
 
   # Enable ZSA keyboard support

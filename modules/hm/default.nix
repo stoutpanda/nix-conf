@@ -3,7 +3,7 @@
 {
   imports = [
     # ./example.nix - add your modules here
-    # ./fish.nix - Disabled: Using hydenix's fish configuration instead
+    # ./fish.nix 
   ];
 
   # home-manager options go here
@@ -146,9 +146,6 @@
       starship.enable = true; # Starship prompt
     };
     
-    # Fix for missing hyde_config.fish file
-    home.file.".config/fish/hyde_config.fish".source =
-      "${pkgs.hyde-modified}/Configs/.config/fish/hyde_config.fish";
     social = {
       enable = true;
       discord.enable = true;

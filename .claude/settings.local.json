@@ -26,7 +26,8 @@
       "Bash(journalctl:*)",
       "Bash(cat:*)",
       "Bash(home-manager switch:*)",
-      "Bash(ln:*)"
+      "Bash(ln:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
   }
