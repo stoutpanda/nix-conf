@@ -55,6 +55,7 @@
     vim
     wally
     keymapp
+    nixos-install-tools
   ];
 
   # Set vim as default editor

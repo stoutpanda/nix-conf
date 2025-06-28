@@ -4,8 +4,8 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ../../modules/desktop/hyprland.nix
-   #../../modules/desktop/gnome.nix
+    #../../modules/desktop/hyprland.nix
+    ../../modules/desktop/gnome.nix
     ../../modules/audio/pipewire.nix
     inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402x-nvidia
   ];

@@ -4,7 +4,7 @@
   imports = [
     ./home-modules/shell
     ./home-modules/programs/git.nix
-    ./home-modules/programs/hyprland.nix
+   # ./home-modules/programs/hyprland.nix
   ];
 
   home.username = "jason";
@@ -90,6 +90,7 @@
     waybar
     brightnessctl
     google-chrome
+    teamspeak5_client
   ];
 
   # This value determines the home Manager release that your
