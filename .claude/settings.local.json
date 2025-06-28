@@ -6,7 +6,27 @@
       "mcp__nixos__nixos_search",
       "mcp__nixos__home_manager_info",
       "Bash(sudo nixos-rebuild switch:*)",
-      "Bash(nixos-rebuild build:*)"
+      "Bash(nixos-rebuild build:*)",
+      "mcp__nixos__nixos_flakes_search",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(tree:*)",
+      "Bash(rg:*)",
+      "Bash(nix flake show:*)",
+      "Bash(nix --extra-experimental-features 'nix-command flakes' build --print-out-paths 'git+file:///home/jason/projects/nix-config#nixosConfigurations.\"whitedwarf-nixos\".config.system.build.toplevel' --no-link)",
+      "Bash(grep:*)",
+      "Bash(nix:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(readlink:*)",
+      "Bash(hyprctl:*)",
+      "Bash(home-manager generations:*)",
+      "Bash(systemctl:*)",
+      "Bash(pgrep:*)",
+      "Bash(journalctl:*)",
+      "Bash(cat:*)",
+      "Bash(home-manager switch:*)",
+      "Bash(ln:*)"
     ],
     "deny": []
   }

@@ -1,75 +1,103 @@
-{ config, pkgs, inputs, ... }:
-
 {
-  # Set your time zone
-  time.timeZone = "America/Chicago";
+  inputs,
+  system,
+  ...
+}:
+let
+  # Package declaration
+  # ---------------------
 
-  # Select internationalisation properties
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  # Enable CUPS to print documents
-  services.printing.enable = true;
-
-  # Define a user account
-  users.users.jason = {
-    isNormalUser = true;
-    description = "jason";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      thunderbird
-      bitwarden-desktop
-      ghostty
-      claude-code    
-      obsidian
-      starship
-      neovim
-      vscode
+  pkgs = import inputs.hydenix.inputs.hydenix-nixpkgs {
+    inherit system;  # Use system from specialArgs
+    config.allowUnfree = true;
+    overlays = [
+      inputs.hydenix.lib.overlays
+      (final: prev: {
+        userPkgs = import inputs.nixpkgs {
+          inherit system;  # Use system from specialArgs
+          config.allowUnfree = true;
+        };
+      })
     ];
   };
+in
+{
 
-  # Enable programs
-  programs.fish.enable = true;
+  # Set pkgs for hydenix globally, any file that imports pkgs will use this
+  nixpkgs.pkgs = pkgs;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  imports = [
+    inputs.hydenix.inputs.home-manager.nixosModules.home-manager
+    # Hardware configuration is now loaded from host-specific directory via flake.nix
+    inputs.hydenix.lib.nixOsModules
+    ./modules/system
 
-  # List packages installed in system profile
-  environment.systemPackages = with pkgs; [
-    wget
-    htop
-    curl
-    git
-    docker
-    vim
-    wally
-    keymapp
-    nixos-install-tools
+    # === Common hardware modules ===
+    inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
+    inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd
+    
+    # Host-specific hardware modules are loaded in hosts/${hostname}/configuration.nix
   ];
 
-  # Set vim as default editor
-  environment.variables.EDITOR = "vim";
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs;
+    };
 
-  # Enable flakes and nix command
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    #! EDIT THIS USER (must match users defined below)
+    users."jason" =
+      { ... }:
+      {
+        imports = [
+          inputs.hydenix.lib.homeModules
+          # Nix-index-database - for comma and command-not-found
+          inputs.nix-index-database.hmModules.nix-index
+          ./modules/hm
+        ];
+      };
+  };
 
-  # Enable the OpenSSH daemon
-  services.openssh.enable = true;
+  # IMPORTANT: Customize the following values to match your preferences
+  hydenix = {
+    enable = true; # Enable the Hydenix module
 
-  # Enable docker
-  virtualisation.docker.enable = true;
+    # Hostname is now set per-host in hosts/${hostname}/configuration.nix
+    timezone = "America/Chicago"; # Change to your timezone
+    locale = "en_US.UTF-8"; # Change to your preferred locale
 
-  # Enable ZSA keyboard support
-  hardware.keyboard.zsa.enable = true;
+    # Enable all Hydenix modules with custom settings
+    audio.enable = true; # enable audio module
+    boot = {
+      enable = true; # enable boot module
+      useSystemdBoot = true; # use systemd-boot (configured per-host)
+      kernelPackages = pkgs.linuxPackages_zen; # zen kernel for better desktop performance
+    };
+    gaming.enable = false; # disable gaming module for now
+    hardware.enable = true; # enable hardware module
+    network.enable = true; # enable network module (includes NetworkManager)
+    nix.enable = true; # enable nix module
+    sddm = {
+      enable = true; # enable sddm module
+      theme = "Candy"; # or "Corners"
+    };
+    system.enable = true; # enable system module
+  };
+
+  users.users.jason = {
+    isNormalUser = true; # Regular user account
+    initialPassword = "jason"; # Default password (CHANGE THIS after first login with passwd)
+    extraGroups = [
+      "wheel" # For sudo access
+      "networkmanager" # For network management
+      "video" # For display/graphics access
+      "audio" # For audio access
+      "input" # For input devices
+      # Add other groups as needed
+    ];
+    shell = pkgs.userPkgs.fish; # Using fish as default shell
+  };
+
+  #system.stateVersion = "25.11";
 }

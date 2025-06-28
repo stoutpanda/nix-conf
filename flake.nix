@@ -1,58 +1,63 @@
-	{
-  description = "NixOS System Configuration";
+{
+  description = "Hydenix with modular hardware configuration";
 
   inputs = {
-    # NixOS official package source
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # Nixos Hyprland
-    hyprland.url = "github:hyprwm/Hyprland";  
-    # Home Manager for user configuration management
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # User's nixpkgs - for user packages
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Hydenix and its nixpkgs - kept separate to avoid conflicts
+    hydenix = {
+      # Available inputs:
+      # Main: github:richen604/hydenix
+      # Dev: github:richen604/hydenix/dev
+      # Commit: github:richen604/hydenix/<commit-hash>
+      # Version: github:richen604/hydenix/v1.0.0
+      url = "github:richen604/hydenix";
     };
-    
+
     # Hardware-specific configurations
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    
-    # Systems definitions
-    systems.url = "github:nix-systems/default";
-    
+
+    # Nix-index-database - for comma and command-not-found
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, flake-utils, systems, ... }@inputs: 
+
+  outputs =
+    { ... }@inputs:
     let
-      # Helper function to create system configurations
-      mkSystem = system: hostname:
-        nixpkgs.lib.nixosSystem {
+      # System architecture - declare once, use everywhere
+      system = "x86_64-linux";
+      
+      # Helper function to create system configurations with host support
+      mkSystem = hostname:
+        inputs.hydenix.inputs.hydenix-nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs hostname system;
+          };
           modules = [
-            # Common configuration for all hosts
+            # Base Hydenix configuration
             ./configuration.nix
             
-            # Host-specific configuration
-            ./hosts/${hostname}/configuration.nix
+            # Host-specific hardware configuration
+            ./hosts/${hostname}/hardware-configuration.nix
             
-            # Home-manager NixOS module
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                
-                # User configurations
-                users.jason = import ./home.nix;
-              };
-            }
+            # Host-specific overrides (if exists)
+            ./hosts/${hostname}/configuration.nix
           ];
         };
+
     in
     {
-      # NixOS configurations
       nixosConfigurations = {
-        whitedwarf-nixos = mkSystem "x86_64-linux" "whitedwarf-nixos";
+        # Default configuration for compatibility
+        nixos = mkSystem "whitedwarf-nixos";
+        
+        # Host-specific configurations
+        whitedwarf-nixos = mkSystem "whitedwarf-nixos";
       };
     };
 }
