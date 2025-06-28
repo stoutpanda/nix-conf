@@ -8,6 +8,7 @@
 
   # Hostname configuration
   networking.hostName = "whitedwarf-nixos";
+  hydenix.hostname = "whitedwarf-nixos";
 
   # Bootloader configuration
   boot.loader.systemd-boot.enable = true;
