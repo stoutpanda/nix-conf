@@ -97,5 +97,5 @@ in
     shell = pkgs.userPkgs.fish; # Using fish as default shell
   };
 
-  system.stateVersion = "25.11";
+ # system.stateVersion = inputs.hydenix.lib.mkForce "25.11";
 }

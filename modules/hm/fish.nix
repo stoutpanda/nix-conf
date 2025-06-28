@@ -10,19 +10,6 @@
       set -g fish_greeting
     '';
     
-    # Fish abbreviations (similar to aliases)
-    shellAbbrs = {
-      ll = "ls -la";
-      la = "ls -A";
-      l = "ls -CF";
-      
-      # Git abbreviations
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gp = "git push";
-      gl = "git log";
-      gd = "git diff";
     };
     
     # Fish functions

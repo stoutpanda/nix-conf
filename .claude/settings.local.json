@@ -11,7 +11,8 @@
       "Bash(mkdir:*)",
       "Bash(rm:*)",
       "Bash(tree:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(nix flake show:*)"
     ],
     "deny": []
   }
