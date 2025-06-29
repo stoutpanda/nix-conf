@@ -17,7 +17,6 @@
     lazygit
     jq
     yq-go
-    eza
     ripgrep
     
     # System monitoring
@@ -135,7 +134,7 @@
     shell = {
       enable = true;
       zsh = {
-        enable = false; # Disable zsh since we're using fish
+        enable = true; # Disable zsh since we're using fish
         plugins = [ "sudo" ];
         configText = "";
       };

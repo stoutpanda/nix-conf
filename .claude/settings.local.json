@@ -27,7 +27,12 @@
       "Bash(cat:*)",
       "Bash(home-manager switch:*)",
       "Bash(ln:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "mcp__mcp-nixos__nixos_search",
+      "mcp__mcp-nixos__home_manager_search",
+      "mcp__mcp-nixos__home_manager_options_by_prefix"
     ],
     "deny": []
   }

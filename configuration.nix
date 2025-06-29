@@ -96,7 +96,6 @@ in
       "input" # For input devices
       # Add other groups as needed
     ];
-    shell = pkgs.userPkgs.fish; # Using fish as default shell
   };
 
   #system.stateVersion = "25.11";
